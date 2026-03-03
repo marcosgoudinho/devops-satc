@@ -1,87 +1,43 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Calculadora Simples (React CDN)</title>
-    <style>
-      body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; background:#f4f6f8; }
-      .calculator { background:#fff; padding:16px; border-radius:8px; box-shadow:0 6px 18px rgba(0,0,0,0.08); width:320px; }
-      .display { background:#0b0f1a; color:#fff; font-size:28px; padding:12px; border-radius:6px; text-align:right; min-height:48px; box-sizing:border-box; }
-      .buttons { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:12px; }
-      button { padding:14px; font-size:18px; border-radius:6px; border:0; background:#e9eef3; cursor:pointer; }
-      button.op { background:#ffd166; }
-      button.equal { background:#06d6a0; color:#fff; grid-column:span 2; }
-      button.clear { background:#ef476f; color:#fff; }
-    </style>
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
   </head>
   <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-    <!-- React and Babel via CDN (sem build step) -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <script type="text/babel">
-      const { useState } = React;
-
-      function App(){
-        const [expr, setExpr] = useState('');
-
-        function add(char){
-          // Prevent two operators in a row
-          if(/[+\-*/.]$/.test(expr) && /[+\-*/.]/.test(char)) return;
-          setExpr((s) => (s === '0' ? String(char) : s + char));
-        }
-
-        function clearAll(){ setExpr(''); }
-
-        function evaluate(){
-          try{
-            // Eval is simple here; input is from buttons only.
-            // eslint-disable-next-line no-eval
-            const res = eval(expr || '0');
-            setExpr(String(res));
-          }catch(e){
-            setExpr('Erro');
-            setTimeout(() => setExpr(''), 1000);
-          }
-        }
-
-        return (
-          <div className="calculator">
-            <div className="display">{expr || '0'}</div>
-            <div className="buttons">
-              <button className="clear" onClick={clearAll}>C</button>
-              <button onClick={() => add('(')}>(</button>
-              <button onClick={() => add(')')}>)</button>
-              <button className="op" onClick={() => add('/')}>/</button>
-
-              <button onClick={() => add('7')}>7</button>
-              <button onClick={() => add('8')}>8</button>
-              <button onClick={() => add('9')}>9</button>
-              <button className="op" onClick={() => add('*')}>*</button>
-
-              <button onClick={() => add('4')}>4</button>
-              <button onClick={() => add('5')}>5</button>
-              <button onClick={() => add('6')}>6</button>
-              <button className="op" onClick={() => add('-')}>-</button>
-
-              <button onClick={() => add('1')}>1</button>
-              <button onClick={() => add('2')}>2</button>
-              <button onClick={() => add('3')}>3</button>
-              <button className="op" onClick={() => add('+')}>+</button>
-
-              <button onClick={() => add('0')}>0</button>
-              <button onClick={() => add('.')}>.</button>
-              <button className="equal" onClick={evaluate}>=</button>
-            </div>
-          </div>
-        );
-      }
-
-      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
-    </script>
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
   </body>
 </html>
